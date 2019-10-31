@@ -1,6 +1,10 @@
-const apis = require('express').Router()
+const express = require('express')
+const router = express.Router()
+
 const apiController = require('../controllers/apiController')
 
-router.get('/',apiController)
+router.get('/trivia', apiController.getTrivia)
+router.get('/bored', apiController.getAdvice)
+router.get('/quote', apiController.getQuote)
 
-module.exports = apis
+module.exports = router
