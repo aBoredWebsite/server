@@ -2,10 +2,11 @@
 
 **List of Routes User:**
 
-| **Route**       | **HTTP** | **Description**                                      |
-| --------------- | -------- | ---------------------------------------------------- |
-| /users/register | POST     | Sign up with new user info                           |
-| /users/login    | POST     | Sign in and get an access token based on credentials |
+| **Route**         | **HTTP** | **Description**                                      |
+| ----------------- | -------- | ---------------------------------------------------- |
+| /users/register   | POST     | Sign up with new user info                           |
+| /users/login      | POST     | Sign in and get an access token based on credentials |
+| /users/loginOAuth | POST     | Sign in using OAuth 2.0 Google                       |
 
 **List of Routes  Api:**
 
@@ -47,12 +48,12 @@
         }
     ```
 * **Error Response:**
-  * **Status:** `500`
+  * **Status:** `409`
     **Content:**
     
     ```
         {
-            "message": 'Internal Server Error'
+            "message": 'Email already in use'
         }
     ```
 
@@ -69,7 +70,7 @@
     
     ```
     {
-        "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTcyMzYzNzUwfQ.Gf0JAtSpcI1r5C6VHAlp-znvaFxJZL5b5pJ5gaCTrNs"
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTcyMzYzNzUwfQ.Gf0JAtSpcI1r5C6VHAlp-znvaFxJZL5b5pJ5gaCTrNs"
     }
     ```
 * **Error Response:**
@@ -78,6 +79,38 @@
     ```
         {
             "message": 'Email/Password is Incorrect'
+        }
+    ```
+
+## **Login Using OAuth 2.0 Google**
+
+- **URL:** `/users/loginOAuth`
+
+- **Method:** `POST`
+
+- **URL Params:** `None`
+
+- **Data Params:** `id_token`
+
+- **Success Response:**
+
+  - **Status:** `200`
+    **Content:** 
+
+    ```
+    {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTcyMzYzNzUwfQ.Gf0JAtSpcI1r5C6VHAlp-znvaFxJZL5b5pJ5gaCTrNs"
+    }
+    ```
+
+- **Error Response:**
+
+  - **Status:** 500
+    **Content:**
+
+    ```
+        {
+            "message": 'Internal server error'
         }
     ```
 
