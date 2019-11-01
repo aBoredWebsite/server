@@ -12,6 +12,10 @@ const quote = axios.create({
   baseURL: 'https://favqs.com/api'
 })
 
+const joke = axios.create({
+  baseURL: 'https://official-joke-api.appspot.com/'
+})
+
 class ApiController {
   static getTrivia(req, res, next) {
     let amount = '10'
@@ -27,7 +31,7 @@ class ApiController {
       .catch(next)
   }
 
-  static getAdvice(req, res, next) {
+  static getBored(req, res, next) {
     bored({
       method: 'get',
       url: `/api/activity`
@@ -44,6 +48,16 @@ class ApiController {
       headers: {
         Authorization: `Token token=${process.env.QUOTEAPI_KEY}`
       }
+    })
+      .then(({ data }) => {
+        res.status(200).json(data)
+      })
+      .catch(next)
+  }
+  static getJoke(req, res, next) {
+    joke({
+      method: 'get',
+      url: '/random_joke'
     })
       .then(({ data }) => {
         res.status(200).json(data)
