@@ -33,7 +33,8 @@ class UserController {
           User.create({ name: Name, email: Email, password })
           .then(user => {
             let id = user._id;
-            payloadJWT = { email: Email, name: Name, _id: id };
+            // payloadJWT = { email: Email, name: Name, _id: id };
+            payloadJWT = { _id: id };
             let token = generateToken(payloadJWT);
             res.status(200).json(token);
           })
