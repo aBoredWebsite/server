@@ -3,7 +3,7 @@ const apiController = require('../controllers/apiController')
 const router = express.Router()
 const auth = require('../middlewares/auth')
 
-router.use(auth)
+// router.use(auth)
 
 router.get('/trivia', apiController.getTrivia)
 router.get('/bored', apiController.getBored)
