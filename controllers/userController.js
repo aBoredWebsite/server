@@ -6,6 +6,7 @@ const client = new OAuth2Client(process.env.CLIENT_ID);
 
 class UserController {
   static loginOAuth(req, res, next) {
+    console.log('masuk oauht==>>>>>>>>>>');
     let { id_token } = req.body;
     let payloadJWT;
     let Email;
@@ -16,6 +17,7 @@ class UserController {
         audience: process.env.CLIENT_ID
       })
       .then(tiket => {
+        console.log(tiket,'ini tiket----<<<');
         const payload = tiket.getPayload();
         const { email, name } = payload;
         Email = email;
@@ -41,6 +43,7 @@ class UserController {
         }
       })
       .catch(err => {
+        console.log(err);
         next(err);
       });
   }
