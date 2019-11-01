@@ -42,6 +42,7 @@ class ApiController {
       .catch(next)
   }
   static getQuote(req, res, next) {
+    console.log('masuk');
     quote({
       method: 'get',
       url: '/quotes',

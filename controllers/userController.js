@@ -46,15 +46,19 @@ class UserController {
   }
 
   static register(req, res, next) {
+    console.log('masuk')
     const { name, email, password } = req.body;
+    console.log(req.body);
     User.findOne({ email })
     .then((user)=>{
+      console.log(user);
       if (user) {
         next({
           status: 400,
           message: `Email already in use`
         });
       } else {
+        console.log('test--->');
         return User.create({ name, email, password })
       }
     })
